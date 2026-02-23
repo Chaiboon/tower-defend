@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bghog3yfvoixm"]
+
+[ext_resource type="Script" uid="uid://s3deiu4ylict" path="res://scenes/upgrade_menu.gd" id="1_e3qxy"]
+
+[node name="UpgradeMenu" type="CanvasLayer" unique_id=1408994258]
+script = ExtResource("1_e3qxy")
+
+[node name="Panel" type="Panel" parent="." unique_id=1120901850]
+anchors_preset = -1
+anchor_top = -0.049000002
+anchor_right = 0.13900001
+anchor_bottom = 0.09900001
+offset_top = -0.24799919
+offset_right = -0.12802124
+offset_bottom = 31.847992
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1334741959]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 133.0
+
+[node name="UpgradeButton" type="Button" parent="Panel/VBoxContainer" unique_id=1737376446]
+layout_mode = 2
+text = "Upgrade"
+icon_alignment = 1
+
+[node name="SaleButton" type="Button" parent="Panel/VBoxContainer" unique_id=789176912]
+layout_mode = 2
+text = "Sale"
+
+[node name="CancelButton" type="Button" parent="Panel/VBoxContainer" unique_id=128183401]
+layout_mode = 2
+text = "X"
+
+[connection signal="button_down" from="Panel/VBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/SaleButton" to="." method="_on_sale_button_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/CancelButton" to="." method="_on_cancel_button_button_down"]

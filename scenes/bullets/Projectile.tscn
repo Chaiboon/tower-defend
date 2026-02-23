@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bffhc1cgdlirr"]
+
+[ext_resource type="Texture2D" uid="uid://ctg6mtu8tgyda" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/13.png" id="1_2d3xx"]
+[ext_resource type="Script" uid="uid://dvlukifs8mkyk" path="res://scenes/bullets/projectile.gd" id="1_e0mko"]
+[ext_resource type="Texture2D" uid="uid://b3f6j4ije0l4e" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/12.png" id="2_e0mko"]
+[ext_resource type="Texture2D" uid="uid://2rsi852ou4xw" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/11.png" id="3_imens"]
+[ext_resource type="Texture2D" uid="uid://cauci4oxp1nol" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/10.png" id="4_kilu0"]
+[ext_resource type="Texture2D" uid="uid://bsa40s54k0pwk" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/9.png" id="5_cxi7j"]
+[ext_resource type="Texture2D" uid="uid://dmicalpwrcxjn" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/8.png" id="6_ljpl5"]
+[ext_resource type="Texture2D" uid="uid://biqfyi72m4nip" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/7.png" id="7_o8xsp"]
+[ext_resource type="Texture2D" uid="uid://b7j5uvhmpg3mu" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/6.png" id="8_nykms"]
+[ext_resource type="Texture2D" uid="uid://kgncbixn3fr1" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/5.png" id="9_56ift"]
+[ext_resource type="Texture2D" uid="uid://byq1ha3p7biho" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/4.png" id="10_s25q0"]
+[ext_resource type="Texture2D" uid="uid://f22vdo6hh654" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/3.png" id="11_wwe81"]
+[ext_resource type="Texture2D" uid="uid://1tff2glmll6y" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/2.png" id="12_0xtiq"]
+[ext_resource type="Texture2D" uid="uid://cb3unpa0evo87" path="res://asset/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/1.png" id="13_slfgg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2w6ax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2d3xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e0mko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_imens")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kilu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cxi7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ljpl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o8xsp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nykms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_56ift")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_s25q0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wwe81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0xtiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_slfgg")
+}],
+"loop": true,
+"name": &"projectile",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxqnj"]
+size = Vector2(15, 3)
+
+[node name="Projectile" type="Area2D" unique_id=1736359503]
+script = ExtResource("1_e0mko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=336965860]
+sprite_frames = SubResource("SpriteFrames_2w6ax")
+animation = &"projectile"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302914466]
+shape = SubResource("RectangleShape2D_mxqnj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

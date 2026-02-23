@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dsj6lsbtv7n3j"]
+
+[ext_resource type="Script" uid="uid://rivmaofinofh" path="res://script/Enemy/enemy.gd" id="1_7k104"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=627434482 groups=["Enemy"]]
+script = ExtResource("1_7k104")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1222854856]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=388791488]
+shape = SubResource("CircleShape2D_7k104")
+
+[node name="Timer" type="Timer" parent="." unique_id=724774058]

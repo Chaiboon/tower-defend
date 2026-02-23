@@ -1,0 +1,37 @@
+extends Area2D
+var count:int = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			open_upgrade_menu()
+
+func open_upgrade_menu():
+	var menu_scene = preload("res://scenes/upgrade_menu.tscn")
+	var menu = menu_scene.instantiate()
+	var offset_x:int
+	var panel:Panel = menu.get_node('Panel')
+	
+	if get_viewport().get_visible_rect().size.x < self.global_position.x + panel.size.x + 15:
+		offset_x = 15
+	else:
+		offset_x = -(15 + panel.size.x)
+		
+	panel.global_position = Vector2(self.global_position.x + 15,self.global_position.y)
+	menu.active_tower = self.get_parent()
+	menu.current_level = int(menu.active_tower.level)
+
+	if !GameData.TOWER_DATA[menu.active_tower.type].has(menu.current_level+1):
+		menu.get_node('Panel').get_node('VBoxContainer').get_node('UpgradeButton').visible = false
+	
+	add_child(menu)
