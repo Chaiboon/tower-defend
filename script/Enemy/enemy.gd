@@ -7,6 +7,8 @@ var speed: float
 var max_health: int
 var current_health: int
 var is_special_animating: = false 
+var reward:int
+var is_dead: = false
 
 func _ready() -> void:
 	setup_enemy()
@@ -17,6 +19,7 @@ func setup_enemy() -> void:
 		max_health = data["max_health"]
 		current_health = max_health
 		speed = data["speed"]
+		reward = data["gold_value"]
 	else:
 		push_error("Enemy type '" + enemy_type + "' not found in GameData")
 
@@ -57,7 +60,11 @@ func reached_end():
 	queue_free()
 
 func die():
+	if is_dead:
+		return
+	is_dead = true
 	var parent = get_parent()
 	var direction = Util.get_foward_vector(parent.get_parent(),parent)
 	await turn(direction,'Death',direction.x > 0,true)
+	GameData.player_money += reward
 	queue_free()

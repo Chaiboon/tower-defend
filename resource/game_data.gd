@@ -1,5 +1,8 @@
 extends Node
 
+var player_health: int = 100
+var player_money: int = 100
+
 const ENEMY_DATA = {
 	"Slime" : {
 				"max_health":70,
