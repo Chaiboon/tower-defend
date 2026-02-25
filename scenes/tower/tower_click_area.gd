@@ -1,5 +1,7 @@
 extends Area2D
 var count:int = 0
+var is_builded:bool = false
+var is_opened:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,7 +15,12 @@ func _process(delta: float) -> void:
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if !is_builded:
+			is_builded = true
+			return 
+			
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and !is_opened:
+			is_opened = true
 			open_upgrade_menu()
 
 func open_upgrade_menu():

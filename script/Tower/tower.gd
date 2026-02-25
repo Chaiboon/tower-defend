@@ -24,7 +24,6 @@ func _ready() -> void:
 
 func assign_stat(type):
 	if GameData.TOWER_DATA[type].has(level):
-		print(level)
 		damage = GameData.TOWER_DATA[type][level]['damage']
 		cool_down = GameData.TOWER_DATA[type][level]['cool_down']
 		max_health = GameData.TOWER_DATA[type][level]['max_health']

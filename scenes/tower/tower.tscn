@@ -44,7 +44,7 @@ metadata/_custom_type_script = "uid://dmu05p52hi5h2"
 script = ExtResource("3_vec08")
 metadata/_custom_type_script = "uid://dtq078qkgw2ic"
 
-[node name="TowerPreAttack" type="Node" parent="StateMachine" unique_id=2007703024 groups=["Enemy"]]
+[node name="TowerPreAttack" type="Node" parent="StateMachine" unique_id=2007703024]
 script = ExtResource("4_8wc2c")
 metadata/_custom_type_script = "uid://bf2r7ysr6wgt1"
 
