@@ -11,10 +11,22 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_placing and ghost_tower:
 		ghost_tower.global_position = get_viewport().get_mouse_position()
+		var tile_map = get_node('TileMap')
+		var mouse_pixel_pos = tile_map.get_local_mouse_position()
+		var map_pos = tile_map.local_to_map(mouse_pixel_pos)
+		var sprite_size = ghost_tower.get_node('BaseAnimation2D').sprite_frames.get_frame_texture('Idle_LV1',0).get_size()
+		
+		#offset by tower area
+		var positive_offset = Vector2i(1,2)
+		var negative_offset = Vector2i(-1,0)
+
+		if can_place_here(map_pos+positive_offset) and (can_place_here(map_pos+negative_offset)):
+			ghost_tower.modulate = Color(1,1,1,0.5)
+		else:
+			ghost_tower.modulate = Color(1.0, 0.0, 0.0, 0.5)
 		#update_ghost_visuals()
 
 func _unhandled_input(event):
-	
 	if not is_placing:
 		return
 		
@@ -25,9 +37,20 @@ func _unhandled_input(event):
 		var tile_map = get_node('TileMap')
 		var mouse_pixel_pos = tile_map.get_local_mouse_position()
 		var map_pos = tile_map.local_to_map(mouse_pixel_pos)
-		if can_place_here(map_pos):
+		var positive_offset = Vector2i(1,2)
+		var negative_offset = Vector2i(-1,0)
+		if can_place_here(map_pos+positive_offset) and (can_place_here(map_pos+negative_offset)):
 			finalize_placement()
-
+		else:
+			var warning_label = get_node('HUD/CenterLabel')
+			warning_label.text = 'Can not place here'
+			warning_label.modulate.a = 1.0
+			warning_label.visible = true
+			
+			var tween: = warning_label.create_tween()
+			tween.tween_property(warning_label,'modulate:a',0.0,1.5)
+			tween.finished.connect(func(): warning_label.visible = false)
+			
 func can_place_here(position_on_map) -> bool:
 	var tile_map = get_node('TileMap')
 	var data = tile_map.get_cell_tile_data(0, position_on_map)

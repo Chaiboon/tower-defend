@@ -4,7 +4,6 @@ class_name TowerIdle
 var tower
 
 func enter(enemy):
-	print('idle')
 	target_enemy = null
 	tower = get_parent().get_parent()
 	var area_detacter = $"../../Area2D"

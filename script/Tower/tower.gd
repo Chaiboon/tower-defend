@@ -9,6 +9,7 @@ var cool_down:float
 var max_health:int
 var level:int = 1
 var just_upgraded:bool = false
+var upgrade_cost:int 
 
 func open_upgrade_menu():
 	var level
@@ -27,6 +28,7 @@ func assign_stat(type):
 		damage = GameData.TOWER_DATA[type][level]['damage']
 		cool_down = GameData.TOWER_DATA[type][level]['cool_down']
 		max_health = GameData.TOWER_DATA[type][level]['max_health']
+		upgrade_cost = GameData.TOWER_DATA[type][level]['upgrade_cost']
 	else:
 		push_error('There are no level ' + str(level))
 

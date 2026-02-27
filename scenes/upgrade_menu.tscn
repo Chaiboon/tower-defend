@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bghog3yfvoixm"]
 
 [ext_resource type="Script" uid="uid://s3deiu4ylict" path="res://scenes/upgrade_menu.gd" id="1_e3qxy"]
+[ext_resource type="Script" uid="uid://dgmmyw877l7xd" path="res://scenes/upgrade_button.gd" id="2_ksfom"]
 
 [node name="UpgradeMenu" type="CanvasLayer" unique_id=1408994258]
 script = ExtResource("1_e3qxy")
@@ -27,6 +28,7 @@ offset_bottom = 133.0
 layout_mode = 2
 text = "Upgrade"
 icon_alignment = 1
+script = ExtResource("2_ksfom")
 
 [node name="SaleButton" type="Button" parent="Panel/VBoxContainer" unique_id=789176912]
 layout_mode = 2

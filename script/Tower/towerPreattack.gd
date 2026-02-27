@@ -3,6 +3,7 @@ class_name TowerPreAttack
 
 func enter(enemy):
 	target_enemy = enemy
+	#print(target_enemy)
 	var timer = $"../../Timer"
 	timer.wait_time = get_parent().get_parent().cool_down
 	if not timer.timeout.is_connected(_on_timer_timeout):

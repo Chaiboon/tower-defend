@@ -38,7 +38,18 @@ func open_upgrade_menu():
 	menu.active_tower = self.get_parent()
 	menu.current_level = int(menu.active_tower.level)
 
-	if !GameData.TOWER_DATA[menu.active_tower.type].has(menu.current_level+1):
-		menu.get_node('Panel').get_node('VBoxContainer').get_node('UpgradeButton').visible = false
+	var upgrade_button:Button = menu.get_node('Panel').get_node('VBoxContainer').get_node('UpgradeButton')
 	
+	if !GameData.TOWER_DATA[menu.active_tower.type].has(menu.current_level+1):
+		upgrade_button.visible = false
+		add_child(menu)
+		return
+	
+	if get_parent().upgrade_cost > GameData.player_money:
+		upgrade_button.disabled = true
+	
+	var upgrade_cost = GameData.TOWER_DATA[menu.active_tower.type][menu.current_level]['upgrade_cost']
+	
+	upgrade_button.text = "Upgrade : " + str(upgrade_cost)
+	upgrade_button.upgrade_cost = upgrade_cost
 	add_child(menu)

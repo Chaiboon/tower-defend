@@ -42,31 +42,31 @@ const TOWER_DATA ={
 						"max_health":100,
 						"cool_down":1.0,
 						"damage":5,
-						"upgrade_cost":100},				
+						"upgrade_cost":200},				
 						2 : {
 						"max_health":150,
 						"cool_down":1.0,
 						"damage":6,
-						"upgrade_cost":200},
+						"upgrade_cost":250},
 						3 : {
 						"max_health":180,
 						"cool_down":0.8,
 						"damage":8,
-						"upgrade_cost":250},
+						"upgrade_cost":300},
 						4 : {
 						"max_health":180,
 						"cool_down":0.8,
 						"damage":10,
-						"upgrade_cost":300},
+						"upgrade_cost":350},
 						5 : {
 						"max_health":210,
 						"cool_down":0.5,
 						"damage":15,
-						"upgrade_cost":350},
+						"upgrade_cost":400},
 						6 : {
 						"max_health":210,
 						"cool_down":0.5,
 						"damage":20,
-						"upgrade_cost":400},
+						"upgrade_cost":450},
 	}
 }

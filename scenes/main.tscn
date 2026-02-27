@@ -157,7 +157,7 @@ point_count = 18
 script = ExtResource("1_0wfyh")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1734159538]
-one_shot = true
+wait_time = 3.0
 
 [node name="TileMap" type="TileMap" parent="." unique_id=47442524]
 tile_set = SubResource("TileSet_xp7cv")
