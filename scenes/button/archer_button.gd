@@ -8,7 +8,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var tower_price = GameData.TOWER_DATA['archer_tower']['purchasing_price']
+	self.disabled = GameData.player_money < tower_price
 
 
 func _on_pressed() -> void:

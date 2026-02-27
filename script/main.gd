@@ -17,10 +17,9 @@ func _process(delta: float) -> void:
 		var sprite_size = ghost_tower.get_node('BaseAnimation2D').sprite_frames.get_frame_texture('Idle_LV1',0).get_size()
 		
 		#offset by tower area
-		var positive_offset = Vector2i(1,2)
-		var negative_offset = Vector2i(-1,0)
+		var positive_offset = Vector2i(0,2)
 
-		if can_place_here(map_pos+positive_offset) and (can_place_here(map_pos+negative_offset)):
+		if can_place_here(map_pos+positive_offset):
 			ghost_tower.modulate = Color(1,1,1,0.5)
 		else:
 			ghost_tower.modulate = Color(1.0, 0.0, 0.0, 0.5)
@@ -37,9 +36,9 @@ func _unhandled_input(event):
 		var tile_map = get_node('TileMap')
 		var mouse_pixel_pos = tile_map.get_local_mouse_position()
 		var map_pos = tile_map.local_to_map(mouse_pixel_pos)
-		var positive_offset = Vector2i(1,2)
-		var negative_offset = Vector2i(-1,0)
-		if can_place_here(map_pos+positive_offset) and (can_place_here(map_pos+negative_offset)):
+		var positive_offset = Vector2i(0,2)
+
+		if can_place_here(map_pos+positive_offset):
 			finalize_placement()
 		else:
 			var warning_label = get_node('HUD/CenterLabel')
@@ -60,9 +59,11 @@ func can_place_here(position_on_map) -> bool:
 
 func finalize_placement():
 	ghost_tower.modulate = Color(1,1,1,1)
+	ghost_tower.get_node("Area2D").monitoring = true
 	ghost_tower.get_node("StateMachine").set_process(true)
 	if ghost_tower.has_method("play_build_animation"):
 		ghost_tower.play_build_animation()
+	GameData.player_money = GameData.player_money - GameData.TOWER_DATA['archer_tower']['purchasing_price']
 	ghost_tower = null
 	is_placing = false
 	current_tower_id = ""
@@ -83,6 +84,7 @@ func initiate_tower_placement(tower_type:String) -> void:
 	ghost_tower.modulate = Color(1,1,1,0.5)
 	ghost_tower.get_node("StateMachine").set_process(false)
 	
+	ghost_tower.get_node("Area2D").monitoring = false
 	add_child(ghost_tower)
 	is_placing = true
 

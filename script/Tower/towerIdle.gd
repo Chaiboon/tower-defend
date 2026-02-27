@@ -25,9 +25,10 @@ func physics_update(_delta: float):
 	archer.play()
 
 func _on_enemy_entered(body):
-	if body.is_in_group("Enemy"):
-		target_enemy = get_tree().get_first_node_in_group('Enemy')
-		Transitioned.emit(self,"towerpreattack",target_enemy)
+	update_targets_from_area()
+	#if body.is_in_group("Enemy"):
+		#target_enemy = get_tree().get_first_node_in_group('Enemy')
+		#Transitioned.emit(self,"towerpreattack",target_enemy)
 		
 func update_targets_from_area():
 	var bodies = tower.get_node('Area2D').get_overlapping_bodies()
